@@ -6,26 +6,30 @@ services:
     ports:
       - "6379:6379"
 
-  nsqlookupd:
+  # fixed according this: https://gist.github.com/crackcomm/9b13a7542bf50647409b311caae22802
+  nsqlookup:
     image: nsqio/nsq:v0.3.8
-    command: /nsqlookupd
+    hostname: nsqlookup
     ports:
       - "4160:4160"
       - "4161:4161"
+    command: /nsqlookupd
 
-  nsqd:
+  nsq:
     image: nsqio/nsq:v0.3.8
-    command: /nsqd --lookupd-tcp-address=nsqlookupd:4160 --broadcast-address=127.0.0.1
-    links:
-      - nsqlookupd:nsqlookupd
+    hostname: nsq
     ports:
       - "4150:4150"
       - "4151:4151"
+    links:
+      - nsqlookup:nsqlookup
+    command: /nsqd --broadcast-address nsq --lookupd-tcp-address=nsqlookup:4160
 
   nsqadmin:
     image: nsqio/nsq:v0.3.8
+    hostname: nsqadmin
+    links:
+      - nsqlookup:nsqlookup
     ports:
       - "4171:4171"
-    links:
-      - nsqlookupd:nsqlookupd
-    command: /nsqadmin --lookupd-http-address=nsqlookupd:4161
+    command: /nsqadmin --lookupd-http-address=nsqlookup:4161

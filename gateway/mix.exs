@@ -27,6 +27,7 @@ defmodule Gateway.MixProject do
       {:yaml_elixir, "~> 2.1"},
       {:hackney, "~> 1.15"},
       {:elixir_nsq, "~> 1.1"},
+      {:poison, "~> 3.1.0"},
     ]
   end
 

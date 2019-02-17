@@ -10,10 +10,18 @@ defmodule Gateway.Upstream.Nsq do
 
   @impl true
   def handle_req(req, topic) do
-    body = Gateway.Server.req_body(req)
+    id = Gateway.Server.req_binding(req, :id)
+    body = req
+           |> Gateway.Server.req_body()
+           |> Poison.decode!()
+           |> Map.put("updated_at", timestamp())
+           |> Map.put("id", id)
+           |> Poison.encode!()
     topic
     |> get_nsq_pid_by_topic()
     |> NSQ.Producer.pub(body)
     {200, %{}, ""}
   end
+
+  defp timestamp, do: System.os_time(:seconds)
 end

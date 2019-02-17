@@ -42,4 +42,5 @@ defmodule Gateway.Server do
   def req_path(req), do: CowboyReq.path(req)
   def req_scheme(req), do: CowboyReq.scheme(req)
   def req_header(req, name, default), do: CowboyReq.header(name, req, default)
+  def req_binding(req, name), do: CowboyReq.binding(name, req)
 end

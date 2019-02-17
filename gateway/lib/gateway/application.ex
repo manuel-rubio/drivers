@@ -10,7 +10,6 @@ defmodule Gateway.Application do
   alias Gateway.{Config, Server}
 
   def start(_type, _args) do
-    # List all child processes to be supervised
 
     port = Config.get_port()
     urls = Config.get_urls()
@@ -18,6 +17,7 @@ defmodule Gateway.Application do
     paths = Config.get_paths(urls)
     nsq_children = Config.get_nsq_children(urls)
 
+    # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Gateway.Worker.start_link(arg)
       # {Gateway.Worker, arg},
