@@ -1,6 +1,7 @@
 .PHONY: all test compile run
 
-all: deps run
+all: deps
+	mix compile
 
 deps:
 	mix deps.get

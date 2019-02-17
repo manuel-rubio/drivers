@@ -27,6 +27,7 @@ defmodule DriverLocation.MixProject do
       {:redix, "~> 0.9.2"},
       {:cowboy, "~> 2.6"},
       {:poison, "~> 3.1.0"},
+      {:hackney, "~> 1.15", only: :test},
     ]
   end
 
