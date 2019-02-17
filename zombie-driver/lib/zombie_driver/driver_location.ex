@@ -27,8 +27,8 @@ defmodule ZombieDriver.DriverLocation do
 
   def is_zombie?(driver, opts) do
     case get(driver, minutes(), opts) do
-      {:ok, [_]} -> false
-      {:ok, []} -> false
+      {:ok, [_]} -> true
+      {:ok, []} -> true
       {:ok, locations} -> calc_distance(locations) <= distance()
       :error -> :error
     end

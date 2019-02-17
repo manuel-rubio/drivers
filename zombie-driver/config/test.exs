@@ -11,4 +11,4 @@ config :zombie_driver, :http,
 
 config :zombie_driver, :driver_locations,
   host: "127.0.0.1",
-  port: 8081
+  port: 8888
