@@ -3,6 +3,7 @@ version: '3'
 services:
   redis:
     image: redis:4.0.9-alpine
+    hostname: redis
     ports:
       - "6379:6379"
 
@@ -33,3 +34,48 @@ services:
     ports:
       - "4171:4171"
     command: /nsqadmin --lookupd-http-address=nsqlookup:4161
+
+  # servers
+  zombie-driver:
+    image: elixir:1.7.4
+    hostname: zombie-driver
+    links:
+      - driver-location:driver-location
+    environment:
+      - MIX_ENV=prod
+    volumes:
+      - ./zombie-driver:/opt/zombie-driver
+    working_dir: /opt/zombie-driver
+    command: iex -S mix prod
+    tty: true
+
+  driver-location:
+    image: elixir:1.7.4
+    hostname: driver-location
+    links:
+      - nsqlookup:nsqlookup
+      - nsq:nsq
+      - redis:redis
+    environment:
+      - MIX_ENV=prod
+    volumes:
+      - ./driver-location:/opt/driver-location
+    working_dir: /opt/driver-location
+    command: iex -S mix prod
+    tty: true
+
+  gateway:
+    image: elixir:1.7.4
+    hostname: gateway
+    ports:
+      - "8080:80"
+    links:
+      - nsq:nsq
+      - zombie-driver:zombie-driver
+    environment:
+      - MIX_ENV=prod
+    volumes:
+      - ./gateway:/opt/gateway
+    working_dir: /opt/gateway
+    command: iex -S mix prod
+    tty: true

@@ -36,6 +36,11 @@ defmodule Gateway.MixProject do
   defp aliases do
     [
       test: ["test --cover"],
+      prod: ["local.hex --force",
+             "local.rebar --force",
+             "deps.get",
+             "compile",
+             "run"],
     ]
   end
 end

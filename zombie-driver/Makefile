@@ -1,4 +1,4 @@
-.PHONY: all test compile run
+.PHONY: all test compile run docker
 
 all: deps run
 
@@ -10,3 +10,6 @@ run:
 
 test:
 	mix test
+
+docker: deps
+	MIX_ENV=prod mix do compile, run
