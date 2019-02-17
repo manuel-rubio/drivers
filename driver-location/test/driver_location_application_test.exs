@@ -26,7 +26,7 @@ defmodule DriverLocationApplicationTest do
     ts_iso = DateTime.from_unix!(ts)
              |> DateTime.to_iso8601()
     message_stored = """
-    [{\"updated_at\":\"#{ts_iso}\",\"longitude\":2.350502,\"latitude\":48.864193}]
+    [{"updated_at":"#{ts_iso}","longitude":2.350502,"latitude":48.864193}]
     """
     |> String.trim()
 
