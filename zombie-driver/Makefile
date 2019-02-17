@@ -1,7 +1,12 @@
-.PHONY: all test
+.PHONY: all test compile run
 
-all:
-	# Write your build command(s) here
+all: deps run
+
+deps:
+	mix deps.get
+
+run:
+	iex -S mix
 
 test:
-	# Write your test command(s) here
+	mix test
