@@ -1,21 +1,13 @@
 # ZombieDriver
 
-**TODO: Add description**
+The `Zombie Driver` service is a microservice that determines if a driver is a zombie or not.
 
-## Installation
+## Getting started
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `zombie_driver` to your list of dependencies in `mix.exs`:
+You can use `make run` to build and start a interactive shell with everything running.
 
-```elixir
-def deps do
-  [
-    {:zombie_driver, "~> 0.1.0"}
-  ]
-end
-```
+## Test it!
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/zombie_driver](https://hexdocs.pm/zombie_driver).
+To perform the tests you can run `make test`.
 
+Enjoy!

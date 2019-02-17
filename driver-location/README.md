@@ -1,21 +1,15 @@
 # DriverLocation
 
-**TODO: Add description**
+The `Driver Location` service is a microservice that consumes drivers' location messages published by the `Gateway` service and stores them in a Redis database.
 
-## Installation
+It also provides an internal endpoint that allows other services to retrieve the drivers' locations, filtered and sorted by their addition date.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `driver_location` to your list of dependencies in `mix.exs`:
+## Getting started
 
-```elixir
-def deps do
-  [
-    {:driver_location, "~> 0.1.0"}
-  ]
-end
-```
+You can use `make run` to build and start a interactive shell with everything running.
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/driver_location](https://hexdocs.pm/driver_location).
+## Test it!
 
+To perform the tests you can run `make test`.
+
+Enjoy!

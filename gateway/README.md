@@ -7,7 +7,7 @@ The service must be configurable dynamically by loading the provided `gateway/co
 
 ## Getting started
 
-You can use `make` to build and start a interactive shell with everything running.
+You can use `make run` to build and start a interactive shell with everything running.
 
 ## Test it!
 
